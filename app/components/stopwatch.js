@@ -17,12 +17,29 @@ class Stopwatch extends Component {
             status: 'running',
             start: new Date().getTime()
         });
+        setTimeout(this.update, 10);
     }
 
     stop = () => {
         this.setState({ status: 'stopped' });
     }
-    
+
+    update = () => {
+        const { status, start } = this.state;
+        if (status === 'running') {
+            this.setState({ elapsed: new Date().getTime() - start });
+            setTimeout(this.update, 10);
+        }
+    }
+
+    reset = () => {
+        this.setState({
+            status: 'stopped',
+            start: null,
+            elapsed: 0
+        })
+    }
+
     render() {
         const { elapsed, status } = this.state;
         return (
@@ -40,6 +57,11 @@ class Stopwatch extends Component {
                     title="Stop"
                     color="#841584"
                     accessibilityLabel="Stop Timer"
+                /><Button
+                    onPress={this.reset}
+                    title="Reset"
+                    color="#841584"
+                    accessibilityLabel="Reset Timer"
                 />
             </View>
         )
