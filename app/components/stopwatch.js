@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { Text, View, Button } from 'react-native';
+
+import Time from './format_time';
 
 class Stopwatch extends Component {
     constructor(props) {
@@ -44,7 +46,7 @@ class Stopwatch extends Component {
         const { elapsed, status } = this.state;
         return (
             <View>
-                <Text className="elapsed">{elapsed}</Text>
+                <Text className="elapsed"><Time elapsed={elapsed} /></Text>
                 <Text className="status">{status}</Text>
                 <Button
                     onPress={this.start}
