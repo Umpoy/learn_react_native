@@ -19,8 +19,9 @@ class FormatTime extends Component {
     }
 
     render() {
+        const { hour, min, sec, ms } = this.millisecondToTime();
         return (
-            <Text>{this.props.elapsed}</Text>
+            <Text>{hour}:{min}:{sec}.{ms}</Text>
         )
     }
 }
